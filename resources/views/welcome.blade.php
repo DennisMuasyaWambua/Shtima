@@ -1,3 +1,35 @@
+<?php
+declare(strict_types=1);
+include_once 'vendor/autoload.php';
+
+use Elarian\Elarian;
+use React\EventLoop\Factory;
+use Rx\Scheduler;
+
+$loop = Factory::create();
+Scheduler::setDefaultFactory(function () use ($loop) {
+    return new Scheduler\EventLoopScheduler($loop);
+});
+
+$elarian = new Elarian(
+    $loop,
+    config('services.elarian.app_id'),
+    config('services.elarian.org_id'),
+    config('services.elarian.key')
+);
+
+$onConnected = function () use($elarian) {
+    echo "App is running!";
+};
+
+$elarian
+    ->on("error", function ($err) { echo "Connection error: ".$err->getMessage(); })
+    ->on("connected", $onConnected);
+
+$elarian->connect();
+$loop->run();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,6 +37,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Charging loctions around you</title>
+
 
     <!-- LOADING THE LIBRARIES -->
     <!-- loading the leaflet maps css library -->
@@ -120,5 +153,13 @@
 
       navigator.geolocation.getCurrentPosition(succesfulLookup, console.log);
     </script>
+    <h3>Select charging location</h3>
+    <select>
+        <option>  </option>
+        <option>Dundori Charging Station</option>
+        <option>Sharaja Charging Station</option>
+        <option>Westlands</option>
+        <option>River Road</option>
+    </select>
   </body>
 </html>
