@@ -34,7 +34,7 @@
 
   <body>
     <div class="water-services">
-      <img src="https://png.pngtree.com/png-clipart/20190924/original/pngtree-battery-charging-icon-for-your-project-png-image_4813067.jpg" width="100px" height="100px" />
+      <img src="https://png.pngtree.com/png-clipart/20190924/original/pngtree-battery-charging-icon-for-your-project-png-image_4813067.jpg" width="90px" height="90px" />
       <p>Some charging locations around you are at :</p>
     </div>
     <div
@@ -63,11 +63,16 @@
           -1.2812857738293117,
         ],
         westlands_Woodvale_Cl: [36.802925129922684, -1.25862459582471],
+        ole_sangale_rd:[ 36.8155,
+        1.3071],
       };
-
       var Dundori_Rd = new mapboxgl.LngLat(
         36.831029249179586,
         1.3043071185011603
+      );
+      var strathmore = new mapboxgl.LngLat(
+        36.8155,
+        1.3071
       );
       var Dundori_Rd_41762_00100 = new mapboxgl.LngLat(
         36.831157995210596,
@@ -85,7 +90,8 @@
         Dundori_Rd,
         Dundori_Rd_41762_00100,
         River_Road_Building_64_near_Tea_Room_opposite_KWFT,
-        Sharja_Plaza_Eastleigh_Nairobi
+        Sharja_Plaza_Eastleigh_Nairobi,
+        strathmore,
       );
 
       var marker1 = new mapboxgl.Marker()
